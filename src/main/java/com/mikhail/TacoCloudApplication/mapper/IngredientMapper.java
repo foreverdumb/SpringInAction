@@ -1,4 +1,4 @@
-package com.mikhail.TacoCloudApplication.database.repository.mapper;
+package com.mikhail.TacoCloudApplication.mapper;
 
 import com.mikhail.TacoCloudApplication.model.Ingredient;
 import org.springframework.jdbc.core.RowMapper;

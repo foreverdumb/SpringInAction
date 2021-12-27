@@ -1,6 +1,13 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/taco_cloud
+    url: jdbc:postgresql://localhost:5432/taco_cloud?currentSchema=public
     username: postgres
     password: postgres
+  liquibase:
+    user: postgres
+    password: postgres
+    default-schema: public
+    liquibase-schema: public
+    enabled: true
+    change-log: classpath:db.changelog/db.changelog-master.yaml

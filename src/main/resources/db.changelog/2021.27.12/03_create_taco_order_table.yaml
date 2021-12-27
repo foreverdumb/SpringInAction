@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021.27.12_03
+      author: lipilovmsh@gmail.com
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: delivery_name
+                  type: varchar(50)
+              - column:
+                  name: delivery_street
+                  type: varchar(50)
+              - column:
+                  name: delivery_city
+                  type: varchar(50)
+              - column:
+                  name: delivery_state
+                  type: varchar(2)
+              - column:
+                  name: delivery_zip
+                  type: varchar(10)
+              - column:
+                  name: cc_number
+                  type: varchar(16)
+              - column:
+                  name: cc_expiration
+                  type: varchar(5)
+              - column:
+                  name: cc_cvv
+                  type: varchar(3)
+              - column:
+                  name: placed_at
+                  type: timestamp
+            schemaName: public
+            tableName: taco_order

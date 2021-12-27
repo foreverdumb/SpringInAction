@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021.27.12_05
+      author: lipilovmsh@gmail.com
+      changes:
+      - sqlFile:
+          splitStatements: true
+          path: db.changelog/2021.27.12/data/insert.sql
+          stripComments: true
