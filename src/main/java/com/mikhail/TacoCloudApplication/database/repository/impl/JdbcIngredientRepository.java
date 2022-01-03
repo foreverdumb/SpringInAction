@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Repository
@@ -33,7 +34,7 @@ public class JdbcIngredientRepository implements IngredientRepository {
         List<Ingredient> ingredientList =
                 jdbcTemplate.query(""
                         + "SELECT *\n"
-                        + "FROM ingredien\n"
+                        + "FROM ingredient\n"
                         + "WHERE id = ?", ingredientMapper
                 );
         return ingredientList.size() == 0 ? Optional.empty() : Optional.of(ingredientList.get(0));
@@ -41,12 +42,18 @@ public class JdbcIngredientRepository implements IngredientRepository {
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        jdbcTemplate.update(
-                "INSERT INTO ingredient (id, name, type) VALUES (?, ?, ?)",
-                ingredient.getId(),
-                ingredient.getName(),
-                ingredient.getType().toString()
-        );
+        if (ingredient.getId() != null
+                && ingredient.getName() != null
+                && ingredient.getType() != null
+        ) {
+            jdbcTemplate.update(
+                    "INSERT INTO ingredient (id, name, type)\n"
+                            + "VALUES (?, ?, ?)",
+                    ingredient.getId(),
+                    ingredient.getName(),
+                    ingredient.getType().toString()
+            );
+        }
         return ingredient;
     }
 }

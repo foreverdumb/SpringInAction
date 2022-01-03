@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 @Component
 public class IngredientMapper implements RowMapper<Ingredient> {
+
     @Override
     public Ingredient mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Ingredient(
@@ -17,4 +18,5 @@ public class IngredientMapper implements RowMapper<Ingredient> {
                 Ingredient.Type.valueOf(rs.getString("type"))
         );
     }
+
 }
