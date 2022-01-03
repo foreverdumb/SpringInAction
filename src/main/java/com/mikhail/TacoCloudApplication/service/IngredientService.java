@@ -2,6 +2,7 @@ package com.mikhail.TacoCloudApplication.service;
 
 import com.mikhail.TacoCloudApplication.database.repository.IngredientRepository;
 import com.mikhail.TacoCloudApplication.model.Ingredient;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class IngredientService {
+
     IngredientRepository ingredientRepository;
 
     public IngredientService(IngredientRepository ingredientRepository) {
@@ -17,12 +19,14 @@ public class IngredientService {
     }
 
     public void addIngredientToModel(Model model) {
-        List<Ingredient> ingredients = ingredientRepository.findAll();
+        Iterable<Ingredient> ingredients = ingredientRepository.findAll();
+        List<Ingredient> ingredientList = Streamable.of(ingredients).toList();
+
         Ingredient.Type[] types = Ingredient.Type.values();
 
         for (Ingredient.Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredients, type));
+                    filterByType(ingredientList, type));
         }
     }
 
