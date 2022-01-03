@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021.27.12_04
+      author: lipilovmsh@gmail.com
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+              - column:
+                  name: taco_order
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_taco_order_id
+                    references: taco_order(id)
+              - column:
+                  name: taco_order_key
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+            schemaName: public
+            tableName: taco

@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db.changelog/2021.27.12/01_create_ingredient_table.yaml
+  - include:
+      file: db.changelog/2021.27.12/02_create_ingredient_ref_table.yaml
+  - include:
+      file: db.changelog/2021.27.12/03_create_taco_order_table.yaml
+  - include:
+      file: db.changelog/2021.27.12/04_create_taco_table.yaml
+  - include:
+      file: db.changelog/2021.27.12/05_insert_data.yaml

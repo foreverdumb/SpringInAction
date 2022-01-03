@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021.27.12_01
+      author: lipilovmsh@gmail.com
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: varchar(4)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(25)
+              - column:
+                  name: type
+                  type: varchar(10)
+            schemaName: public
+            tableName: ingredient

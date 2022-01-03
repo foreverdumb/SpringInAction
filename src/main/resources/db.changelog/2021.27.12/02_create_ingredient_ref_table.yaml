@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021.27.12_02
+      author: lipilovmsh@gmail.com
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: ingredient
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_ingredient_id
+                    references: ingredient(id)
+              - column:
+                  name: taco
+                  type: bigint
+              - column:
+                  name: taco_key
+                  type: bigint
+            schemaName: public
+            tableName: ingredient_ref
