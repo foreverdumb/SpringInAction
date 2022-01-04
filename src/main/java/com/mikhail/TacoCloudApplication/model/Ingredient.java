@@ -1,23 +1,36 @@
 package com.mikhail.TacoCloudApplication.model;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.Hibernate;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import java.util.Objects;
 
-@Data
-@Table(value = "ingredient")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
+@Entity
 public class Ingredient {
 
     @Id
     private final String id;
-    @Column(value = "created_at")
-    private Date createdAt = new Date();
-    @Column(value = "name")
+
+    @Column(name = "name")
     private final String Name;
-    @Column(value = "type")
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private final Type type;
 
     public enum Type {
@@ -28,4 +41,16 @@ public class Ingredient {
         SAUCE
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Ingredient that = (Ingredient) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
